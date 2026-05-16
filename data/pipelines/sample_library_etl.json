@@ -1,0 +1,9 @@
+{
+  "id": "sample_library_etl",
+  "name": "Sample Library ETL",
+  "description": "Extract books from GraphQL, aggregate by genre, load to JSON",
+  "extract_query": "query { books { id title genre author { name } year } }",
+  "transform_function": "gql_learn.etl.transform.aggregate_by_genre",
+  "load_destination": "json:output/library_by_genre.json",
+  "is_builtin": true
+}

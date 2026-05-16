@@ -150,20 +150,20 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 ### Implementation for User Story 3
 
 - [X] T075 [P] [US3] Create src/gql\_learn/etl/models.py with ETLPipeline, PipelineRun pydantic models
-- [ ] T076 [P] [US3] Create src/gql\_learn/etl/extract.py with extract\_graphql(endpoint, query) async function using httpx
-- [ ] T077 [P] [US3] Create src/gql\_learn/etl/transform.py with example transform: aggregate\_by\_genre(records)
-- [ ] T078 [P] [US3] Create src/gql\_learn/etl/load.py with load\_json(records, filepath) and load\_sqlite(records, table, db) functions
-- [ ] T079 [US3] Create src/gql\_learn/etl/runner.py with execute\_pipeline(pipeline: ETLPipeline) orchestrator
-- [ ] T080 [US3] Implement error handling in runner.py: catch transform errors per-record, log, continue or stop
-- [ ] T081 [P] [US3] Create src/gql\_learn/cli/pipeline.py with @click.command() run(name) command
-- [ ] T082 [P] [US3] Create src/gql\_learn/cli/pipeline.py list() command (show available pipelines)
-- [ ] T083 [P] [US3] Create src/gql\_learn/cli/pipeline.py show(name) command (display pipeline details)
-- [ ] T084 [P] [US3] Create src/gql\_learn/cli/pipeline.py runs(name) command (show execution history)
-- [ ] T085 [US3] Create data/pipelines/sample\_library\_etl.json: GraphQL query, transform function, load destination
-- [ ] T086 [P] [US3] Create data/pipelines/ directory and sample pipeline definitions
-- [ ] T087 [US3] Integrate pipeline runner into CLI (load from data/pipelines/, execute via CLI)
-- [ ] T088 [US3] Implement progress display during pipeline execution (extract phase, transform phase, load phase counts)
-- [ ] T089 [US3] Implement pipeline run logging to ~/.gql-learn/runs/{run\_id}.json
+- [X] T076 [P] [US3] Create src/gql\_learn/etl/extract.py with extract\_graphql(endpoint, query) async function using httpx
+- [X] T077 [P] [US3] Create src/gql\_learn/etl/transform.py with example transform: aggregate\_by\_genre(records)
+- [X] T078 [P] [US3] Create src/gql\_learn/etl/load.py with load\_json(records, filepath) and load\_sqlite(records, table, db) functions
+- [X] T079 [US3] Create src/gql\_learn/etl/runner.py with execute\_pipeline(pipeline: ETLPipeline) orchestrator
+- [X] T080 [US3] Implement error handling in runner.py: catch transform errors per-record, log, continue or stop
+- [X] T081 [P] [US3] Create src/gql\_learn/cli/pipeline.py with @click.command() run(name) command
+- [X] T082 [P] [US3] Create src/gql\_learn/cli/pipeline.py list() command (show available pipelines)
+- [X] T083 [P] [US3] Create src/gql\_learn/cli/pipeline.py show(name) command (display pipeline details)
+- [X] T084 [P] [US3] Create src/gql\_learn/cli/pipeline.py runs(name) command (show execution history)
+- [X] T085 [US3] Create data/pipelines/sample\_library\_etl.json: GraphQL query, transform function, load destination
+- [X] T086 [P] [US3] Create data/pipelines/ directory and sample pipeline definitions
+- [X] T087 [US3] Integrate pipeline runner into CLI (load from data/pipelines/, execute via CLI)
+- [X] T088 [US3] Implement progress display during pipeline execution (extract phase, transform phase, load phase counts)
+- [X] T089 [US3] Implement pipeline run logging to ~/.gql-learn/runs/{run\_id}.json
 - [ ] T090 [US3] Validate 80% test coverage for etl/ + cli/pipeline.py
 
 **Checkpoint**: User Story 3 fully functional. Sample ETL pipeline runs end-to-end, data flows correctly, errors are logged.
