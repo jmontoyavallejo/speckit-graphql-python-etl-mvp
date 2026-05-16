@@ -64,6 +64,10 @@ while [ $i -le $# ]; do
             echo "  --timestamp         Use timestamp prefix (YYYYMMDD-HHMMSS) instead of sequential numbering"
             echo "  --help, -h          Show this help message"
             echo ""
+            echo "Branch Naming Convention (GitFlow):"
+            echo "  Sequential: feature/T<NNN>-<short-desc>  (e.g., feature/T001-user-auth)"
+            echo "  Timestamp:  feature/<YYYYMMDD-HHMMSS>-<short-desc>  (e.g., feature/20260516-143022-user-auth)"
+            echo ""
             echo "Examples:"
             echo "  $0 'Add user authentication system' --short-name 'user-auth'"
             echo "  $0 'Implement OAuth2 integration for API' --number 5"
@@ -91,17 +95,18 @@ if [ -z "$FEATURE_DESCRIPTION" ]; then
 fi
 
 # Function to get highest number from specs directory
+# Matches: feature/T001-..., feature/T123-..., feature/YYYYMMDD-HHMMSS-...
 get_highest_from_specs() {
     local specs_dir="$1"
     local highest=0
-    
+
     if [ -d "$specs_dir" ]; then
         for dir in "$specs_dir"/*; do
             [ -d "$dir" ] || continue
             dirname=$(basename "$dir")
-            # Match sequential prefixes (>=3 digits), but skip timestamp dirs.
-            if echo "$dirname" | grep -Eq '^[0-9]{3,}-' && ! echo "$dirname" | grep -Eq '^[0-9]{8}-[0-9]{6}-'; then
-                number=$(echo "$dirname" | grep -Eo '^[0-9]+')
+            # Match sequential T<NNN> format: feature/T001-, feature/T999-, etc.
+            if echo "$dirname" | grep -Eq '^feature/T[0-9]{3,}-' && ! echo "$dirname" | grep -Eq '^feature/[0-9]{8}-[0-9]{6}-'; then
+                number=$(echo "$dirname" | grep -oE 'T[0-9]+' | sed 's/^T//')
                 number=$((10#$number))
                 if [ "$number" -gt "$highest" ]; then
                     highest=$number
@@ -109,7 +114,7 @@ get_highest_from_specs() {
             fi
         done
     fi
-    
+
     echo "$highest"
 }
 
@@ -120,12 +125,14 @@ get_highest_from_branches() {
 
 # Extract the highest sequential feature number from a list of ref names (one per line).
 # Shared by get_highest_from_branches and get_highest_from_remote_refs.
+# Matches: feature/T001-..., feature/T123-..., feature/YYYYMMDD-HHMMSS-...
 _extract_highest_number() {
     local highest=0
     while IFS= read -r name; do
         [ -z "$name" ] && continue
-        if echo "$name" | grep -Eq '^[0-9]{3,}-' && ! echo "$name" | grep -Eq '^[0-9]{8}-[0-9]{6}-'; then
-            number=$(echo "$name" | grep -Eo '^[0-9]+' || echo "0")
+        # Extract sequential T<NNN> format: feature/T001-, feature/T999-, etc.
+        if echo "$name" | grep -Eq '^feature/T[0-9]{3,}-' && ! echo "$name" | grep -Eq '^feature/[0-9]{8}-[0-9]{6}-'; then
+            number=$(echo "$name" | grep -oE 'T[0-9]+' | sed 's/^T//' || echo "0")
             number=$((10#$number))
             if [ "$number" -gt "$highest" ]; then
                 highest=$number
@@ -274,7 +281,7 @@ fi
 # Determine branch prefix
 if [ "$USE_TIMESTAMP" = true ]; then
     FEATURE_NUM=$(date +%Y%m%d-%H%M%S)
-    BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
+    BRANCH_NAME="feature/${FEATURE_NUM}-${BRANCH_SUFFIX}"
 else
     # Determine branch number
     if [ -z "$BRANCH_NUMBER" ]; then
@@ -296,8 +303,8 @@ else
     fi
 
     # Force base-10 interpretation to prevent octal conversion (e.g., 010 → 8 in octal, but should be 10 in decimal)
-    FEATURE_NUM=$(printf "%03d" "$((10#$BRANCH_NUMBER))")
-    BRANCH_NAME="${FEATURE_NUM}-${BRANCH_SUFFIX}"
+    FEATURE_NUM=$(printf "T%03d" "$((10#$BRANCH_NUMBER))")
+    BRANCH_NAME="feature/${FEATURE_NUM}-${BRANCH_SUFFIX}"
 fi
 
 # GitHub enforces a 244-byte limit on branch names

@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git branch *)"
+      "Bash(git branch *)",
+      "Bash(Test-Path \".specify/extensions.yml\" -PathType Leaf)",
+      "Bash(./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)"
     ]
   }
 }
