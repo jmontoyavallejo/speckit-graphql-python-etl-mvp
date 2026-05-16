@@ -12,7 +12,8 @@
       "Bash(python -m pytest tests/unit/test_modules.py -xvs --tb=short)",
       "Bash(python -m pytest tests/unit/test_extract.py tests/unit/test_transform.py tests/unit/test_pipeline_models.py tests/integration/test_pipeline_e2e.py tests/integration/test_pipeline_cli.py --cov=src/gql_learn/etl --cov=src/gql_learn/cli/pipeline --cov-report=term --cov-fail-under=0)",
       "Bash(python -m pytest tests/unit/test_extract.py tests/unit/test_transform.py tests/unit/test_pipeline_models.py tests/integration/test_pipeline_e2e.py tests/integration/test_pipeline_cli.py --cov=src/gql_learn/etl --cov=src/gql_learn/cli/pipeline --cov-report=term-missing)",
-      "Bash(python -m mypy src/gql_learn --strict)"
+      "Bash(python -m mypy src/gql_learn --strict)",
+      "Bash(python -m pytest tests/ --cov=src/gql_learn --cov-fail-under=0 --tb=short)"
     ]
   }
 }
