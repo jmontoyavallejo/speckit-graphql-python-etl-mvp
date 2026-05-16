@@ -1,3 +1,9 @@
+# Claude Code Instructions
+
+## Commits
+- **Never** add `Co-Authored-By:` footers to commit messages
+- All commits should be authored solely by the project author (Juan Pablo)
+
 <!-- SPECKIT START -->
 Implementation plan: specs/001-graphql-python-etl/plan.md
 
