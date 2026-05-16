@@ -27,6 +27,9 @@
       "Bash(bash ./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
       "Bash(bash ./.specify/scripts/bash/setup-plan.sh --json)",
       "Bash(bash ./.specify/scripts/bash/setup-tasks.sh --json)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\JUAN PABLO\\.claude\\projects\\c--Users-JUAN-PABLO-Documents-programacion-aprender-graphql\\memory"
     ]
   }
 }

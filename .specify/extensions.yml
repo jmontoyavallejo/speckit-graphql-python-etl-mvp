@@ -147,3 +147,10 @@ hooks:
     prompt: Commit after syncing issues?
     description: Auto-commit after tasks-to-issues conversion
     condition: null
+
+# Pre-implement extension for automated pre-flight checks (T104)
+pre-implement:
+  enabled: true
+  version: 1.0.0
+  description: "Automated pre-flight checks before implementation"
+  script: .specify/extensions/pre-implement/hooks/before-implement.sh
