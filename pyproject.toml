@@ -1,0 +1,86 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "speckit-graphql-python-etl-mvp"
+version = "0.1.0"
+description = "Interactive GraphQL learning platform with Q&A, local GraphQL server, and ETL pipelines"
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [
+    { name = "Juan Pablo", email = "jpmvallejo@gmail.com" }
+]
+license = { text = "MIT" }
+
+# Runtime dependencies (project requirements per plan.md)
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "strawberry-graphql[fastapi]>=0.243.0",
+    "sqlalchemy>=2.0.0",
+    "psycopg[binary]>=3.1.0",
+    "alembic>=1.12.0",
+    "click>=8.1.0",
+    "rich>=13.0.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.0.0",
+    "httpx>=0.25.0",
+    "python-dotenv>=1.0.0",
+    "python-multipart>=0.0.6",
+]
+
+# Dev dependencies (linting, testing, type checking)
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "mypy>=1.5.0",
+    "ruff>=0.1.0",
+    "pre-commit>=3.3.0",
+]
+
+[project.scripts]
+gql-learn = "gql_learn.cli.main:cli"
+
+# Tool: pytest (testing per Principle II)
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "--cov=src --cov-fail-under=80 -vv"
+asyncio_mode = "auto"
+
+# Tool: mypy (type checking per Principle I)
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
+# Tool: ruff (unified linter + formatter)
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "C4", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.lint.isort]
+known-first-party = ["gql_learn"]
+
+# Tool: Coverage
+[tool.coverage.run]
+source = ["src/gql_learn"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "@abstractmethod",
+]

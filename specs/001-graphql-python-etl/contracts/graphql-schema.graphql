@@ -1,0 +1,138 @@
+"""
+GraphQL Schema Contract for Learning Library
+
+This is the public GraphQL schema exposed by the learning platform.
+All resolvers MUST return data matching these types exactly.
+"""
+
+type Query {
+  """List all books (with optional pagination)"""
+  books(limit: Int = 10, offset: Int = 0): [Book!]!
+
+  """Get a single book by ID"""
+  book(id: ID!): Book
+
+  """List all authors"""
+  authors: [Author!]!
+
+  """Get a single author by ID"""
+  author(id: ID!): Author
+
+  """Search books by title (case-insensitive)"""
+  searchBooks(title: String!): [Book!]!
+
+  """Get books by genre"""
+  booksByGenre(genre: String!): [Book!]!
+}
+
+type Mutation {
+  """Add a new book to the library"""
+  addBook(
+    title: String!
+    authorId: ID!
+    year: Int!
+    genre: String!
+    isbn: String
+  ): Book!
+
+  """Update an existing book"""
+  updateBook(
+    id: ID!
+    title: String
+    year: Int
+    genre: String
+    isbn: String
+  ): Book
+
+  """Delete a book by ID"""
+  deleteBook(id: ID!): Boolean!
+
+  """Add a new author"""
+  addAuthor(
+    name: String!
+    birthYear: Int
+    nationality: String
+  ): Author!
+
+  """Update an author"""
+  updateAuthor(
+    id: ID!
+    name: String
+    birthYear: Int
+    nationality: String
+  ): Author
+
+  """Delete an author (cascade deletes all books)"""
+  deleteAuthor(id: ID!): Boolean!
+}
+
+type Subscription {
+  """Emitted when a new book is added"""
+  bookAdded: Book!
+
+  """Emitted when a new author is added"""
+  authorAdded: Author!
+}
+
+"""
+A book in the library.
+"""
+type Book {
+  """Unique identifier"""
+  id: ID!
+
+  """Book title"""
+  title: String!
+
+  """Associated author"""
+  author: Author!
+
+  """Publication year"""
+  year: Int!
+
+  """Genre (Fiction, Science Fiction, Mystery, etc.)"""
+  genre: String!
+
+  """Optional ISBN-13"""
+  isbn: String
+
+  """When this record was created (ISO 8601 UTC)"""
+  createdAt: String!
+}
+
+"""
+An author in the library.
+"""
+type Author {
+  """Unique identifier"""
+  id: ID!
+
+  """Author name"""
+  name: String!
+
+  """Birth year (if known)"""
+  birthYear: Int
+
+  """Country of origin (if known)"""
+  nationality: String
+
+  """All books by this author"""
+  books: [Book!]!
+
+  """When this record was created (ISO 8601 UTC)"""
+  createdAt: String!
+}
+
+"""
+Error details returned in GraphQL errors.
+"""
+type Error {
+  """Error code (e.g., NOT_FOUND, INVALID_INPUT)"""
+  code: String!
+
+  """Human-readable error message"""
+  message: String!
+
+  """Field path that caused the error (for validation errors)"""
+  path: String
+}
