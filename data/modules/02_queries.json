@@ -1,0 +1,48 @@
+{
+  "id": "02_queries",
+  "title": "GraphQL Queries",
+  "description": "Master the art of querying data with GraphQL",
+  "estimated_duration": 20,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "What is a GraphQL query?",
+      "explanation": "A GraphQL query is a request to read data from the server, specifying exactly which fields you need.",
+      "acceptable_answers": ["a request to read data", "a way to fetch specific fields", "a data retrieval operation"],
+      "hint": "It's the GraphQL equivalent of HTTP GET",
+      "type": "text"
+    },
+    {
+      "id": "q2",
+      "text": "How do you ask for specific fields in a GraphQL query?",
+      "explanation": "You list the field names inside curly braces, e.g., { user { name email } }",
+      "acceptable_answers": ["list them in curly braces", "specify them in the query body", "use braces to list fields"],
+      "hint": "Use the brackets!",
+      "type": "text"
+    },
+    {
+      "id": "q3",
+      "text": "What is query nesting in GraphQL?",
+      "explanation": "Query nesting allows you to request related data in a single query by following relationships, e.g., user { posts { title } }",
+      "acceptable_answers": ["requesting related data together", "following relationships in one query", "querying nested objects"],
+      "hint": "It's about getting related data without multiple requests",
+      "type": "text"
+    },
+    {
+      "id": "q4",
+      "text": "What are query variables and why are they useful?",
+      "explanation": "Query variables allow you to parameterize queries, making them reusable and enabling dynamic values.",
+      "acceptable_answers": ["parameters for dynamic queries", "way to make queries reusable", "parameterized query values"],
+      "hint": "Think about not hardcoding values",
+      "type": "text"
+    },
+    {
+      "id": "q5",
+      "text": "What is query aliasing in GraphQL?",
+      "explanation": "Aliasing allows you to request the same field multiple times with different names, e.g., { current: user { name } past: user { id } }",
+      "acceptable_answers": ["requesting same field with different names", "renaming fields in a query", "multiple requests of same field"],
+      "hint": "It's about requesting the same thing but calling it something else",
+      "type": "text"
+    }
+  ]
+}

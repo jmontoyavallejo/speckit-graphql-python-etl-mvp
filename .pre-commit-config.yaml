@@ -1,0 +1,32 @@
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.8
+    hooks:
+      - id: ruff
+        args: [--line-length=100]
+      - id: ruff-format
+        args: [--line-length=100]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.5.0
+    hooks:
+      - id: mypy
+        args: [--strict]
+        additional_dependencies:
+          [
+            pydantic,
+            sqlalchemy,
+            click,
+            fastapi,
+            strawberry-graphql,
+          ]
+        exclude: tests/
+
+ci:
+  autofix_commit_msg: "refactor: auto-fix code style with pre-commit hooks"
+  autofix_prs: true
+  autoupdate_branch: ""
+  autoupdate_commit_msg: "ci: auto-update pre-commit hooks"
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

@@ -1,0 +1,48 @@
+{
+  "id": "03_mutations",
+  "title": "GraphQL Mutations",
+  "description": "Learn how to modify data with GraphQL mutations",
+  "estimated_duration": 20,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "What is a GraphQL mutation?",
+      "explanation": "A GraphQL mutation is a request to modify data on the server, such as creating, updating, or deleting records.",
+      "acceptable_answers": ["a request to modify data", "write operation in GraphQL", "create/update/delete operation"],
+      "hint": "It's the opposite of a query",
+      "type": "text"
+    },
+    {
+      "id": "q2",
+      "text": "How do mutations differ from queries?",
+      "explanation": "Mutations are for modifying data, queries are for reading. Mutations can have side effects, queries should be side-effect-free.",
+      "acceptable_answers": ["mutations modify, queries read", "mutations have side effects", "mutations write, queries read"],
+      "hint": "One reads, one writes",
+      "type": "text"
+    },
+    {
+      "id": "q3",
+      "text": "What can a mutation return?",
+      "explanation": "A mutation can return any type defined in the schema, including the modified object, success status, or list of results.",
+      "acceptable_answers": ["any type in the schema", "the modified data", "success messages and data"],
+      "hint": "It's flexible like queries",
+      "type": "text"
+    },
+    {
+      "id": "q4",
+      "text": "What is a mutation input type?",
+      "explanation": "An input type is a special type used to group input parameters for mutations, like CreateUserInput with name and email fields.",
+      "acceptable_answers": ["a type for grouping input parameters", "input data structure", "parameters grouped together"],
+      "hint": "It helps organize parameters",
+      "type": "text"
+    },
+    {
+      "id": "q5",
+      "text": "Why execute mutations sequentially?",
+      "explanation": "Mutations should be sequential because they have side effects and order matters - one mutation might depend on another.",
+      "acceptable_answers": ["order matters for side effects", "prevent concurrent conflicts", "data dependencies between mutations"],
+      "hint": "Think about data dependencies",
+      "type": "text"
+    }
+  ]
+}

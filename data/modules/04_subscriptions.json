@@ -1,0 +1,48 @@
+{
+  "id": "04_subscriptions",
+  "title": "GraphQL Subscriptions",
+  "description": "Explore real-time data with GraphQL subscriptions (post-MVP)",
+  "estimated_duration": 15,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "What is a GraphQL subscription?",
+      "explanation": "A subscription is a long-lived connection that pushes real-time data updates to the client when specific events occur.",
+      "acceptable_answers": ["real-time data updates", "long-lived connection", "push notifications for events"],
+      "hint": "It's for live updates",
+      "type": "text"
+    },
+    {
+      "id": "q2",
+      "text": "How do subscriptions differ from queries?",
+      "explanation": "Queries fetch data once, subscriptions establish persistent connections that push updates when data changes.",
+      "acceptable_answers": ["subscriptions push live updates", "persistent vs single request", "event-driven vs request-response"],
+      "hint": "One is push, one is pull",
+      "type": "text"
+    },
+    {
+      "id": "q3",
+      "text": "What transport is used for GraphQL subscriptions?",
+      "explanation": "WebSockets are typically used for subscriptions to maintain persistent, bidirectional communication.",
+      "acceptable_answers": ["WebSockets", "websocket", "persistent connection protocol"],
+      "hint": "It needs to be persistent",
+      "type": "text"
+    },
+    {
+      "id": "q4",
+      "text": "What are common use cases for subscriptions?",
+      "explanation": "Live notifications, chat messages, real-time dashboards, activity feeds, and collaborative editing are common examples.",
+      "acceptable_answers": ["chat messages, notifications", "real-time updates", "live collaboration"],
+      "hint": "What needs updates in real-time?",
+      "type": "text"
+    },
+    {
+      "id": "q5",
+      "text": "Do subscriptions require special client libraries?",
+      "explanation": "Yes, clients need support for WebSocket connections and subscription lifecycle management, not all HTTP clients can handle this.",
+      "acceptable_answers": ["yes, special libraries", "WebSocket support needed", "not just HTTP clients"],
+      "hint": "HTTP alone won't work",
+      "type": "text"
+    }
+  ]
+}

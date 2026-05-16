@@ -1,0 +1,48 @@
+{
+  "id": "01_schema_types",
+  "title": "GraphQL Schema & Types",
+  "description": "Learn the fundamentals of GraphQL types and schema definitions",
+  "estimated_duration": 15,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "What is a GraphQL type?",
+      "explanation": "A GraphQL type describes the shape of data - the fields it contains and their data types.",
+      "acceptable_answers": ["a way to define the shape of data", "a definition of object structure", "describes fields and their types"],
+      "hint": "Think about how you describe what data looks like",
+      "type": "text"
+    },
+    {
+      "id": "q2",
+      "text": "What is the purpose of a GraphQL schema?",
+      "explanation": "A schema defines all possible types and how they relate to each other, forming the contract between client and server.",
+      "acceptable_answers": ["defines all types and relationships", "specifies the api contract", "describes available queries and types"],
+      "hint": "It's like a blueprint of your API",
+      "type": "text"
+    },
+    {
+      "id": "q3",
+      "text": "What are the three core types in GraphQL?",
+      "explanation": "Query (read data), Mutation (write data), and Subscription (real-time updates) are the three root types.",
+      "acceptable_answers": ["Query, Mutation, Subscription", "query, mutation, subscription"],
+      "hint": "One is for reading, one for writing, one for live updates",
+      "type": "text"
+    },
+    {
+      "id": "q4",
+      "text": "What does the exclamation mark (!) mean in GraphQL?",
+      "explanation": "The ! indicates a non-null field - it must always return a value and cannot be null.",
+      "acceptable_answers": ["non-null", "required field", "must always have a value"],
+      "hint": "It's about whether a field can be empty",
+      "type": "text"
+    },
+    {
+      "id": "q5",
+      "text": "What is a scalar type in GraphQL?",
+      "explanation": "A scalar type is a basic type that represents a single value (like String, Int, Boolean, Float, ID).",
+      "acceptable_answers": ["a basic type for single values", "primitive types like String and Int", "Int, String, Boolean, Float, ID"],
+      "hint": "Think about basic building blocks",
+      "type": "text"
+    }
+  ]
+}
