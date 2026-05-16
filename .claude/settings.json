@@ -24,7 +24,9 @@
       "PowerShell(.\\\\.specify\\\\scripts\\\\bash\\\\check-prerequisites.sh --json --require-tasks --include-tasks 2>&1)",
       "PowerShell(.\\\\.specify\\\\extensions\\\\git\\\\scripts\\\\powershell\\\\auto-commit.ps1 after_implement)",
       "Edit(/.claude/skills/speckit-git-commit/**)",
-      "Bash(bash ./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)"
+      "Bash(bash ./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
+      "Bash(bash ./.specify/scripts/bash/setup-plan.sh --json)",
+      "Bash(bash ./.specify/scripts/bash/setup-tasks.sh --json)"
     ]
   }
 }
