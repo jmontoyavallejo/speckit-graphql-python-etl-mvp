@@ -26,7 +26,11 @@
       "Edit(/.claude/skills/speckit-git-commit/**)",
       "Bash(bash ./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
       "Bash(bash ./.specify/scripts/bash/setup-plan.sh --json)",
-      "Bash(bash ./.specify/scripts/bash/setup-tasks.sh --json)"
+      "Bash(bash ./.specify/scripts/bash/setup-tasks.sh --json)",
+      "Bash(sed -i 's/^- \\\\[ \\\\] T00[1-9] /- [X] T00\\\\1 /g; s/^- \\\\[ \\\\] T0[1-9][0-9] /- [X] T0\\\\1\\\\2 /g; s/^- \\\\[ \\\\] T[1-9][0-9][0-9] /- [X] T\\\\1\\\\2\\\\3 /g' specs/T104-improve-speckit-workflow/tasks.md)",
+      "Bash(sed -i 's/^- \\\\[ \\\\] \\\\\\(T0[1-9]\\\\|T[1-2][0-9]\\\\\\) /- [X] \\\\1 /g' specs/T104-improve-speckit-workflow/tasks.md)",
+      "Bash(xargs echo \"Total completed tasks:\")",
+      "Bash(python3)"
     ],
     "additionalDirectories": [
       "c:\\Users\\JUAN PABLO\\.claude\\projects\\c--Users-JUAN-PABLO-Documents-programacion-aprender-graphql\\memory"
