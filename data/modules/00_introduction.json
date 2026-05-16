@@ -1,0 +1,48 @@
+{
+  "id": "00_introduction",
+  "title": "Welcome to GraphQL Learning",
+  "description": "An introductory overview of the GraphQL Learning Platform and what you'll learn",
+  "estimated_duration": 5,
+  "questions": [
+    {
+      "id": "q1",
+      "text": "What does GraphQL stand for?",
+      "explanation": "GraphQL stands for Graph Query Language - a query language for APIs that allows clients to request exactly the data they need.",
+      "acceptable_answers": ["Graph Query Language", "graph query language"],
+      "hint": "Think 'Graph' and 'Query Language'",
+      "type": "text"
+    },
+    {
+      "id": "q2",
+      "text": "What is the main advantage of GraphQL over REST?",
+      "explanation": "GraphQL allows clients to request exactly the fields they need, eliminating over-fetching and under-fetching of data compared to fixed REST endpoints.",
+      "acceptable_answers": ["request only needed fields", "no over-fetching", "clients can specify exact data needed", "flexibility in requesting data"],
+      "hint": "It's about getting exactly what you ask for",
+      "type": "text"
+    },
+    {
+      "id": "q3",
+      "text": "What are the three main components of a GraphQL system?",
+      "explanation": "Query (fetch data), Mutation (modify data), and Subscription (real-time updates) are the three main ways to interact with a GraphQL API.",
+      "acceptable_answers": ["Query, Mutation, Subscription", "query, mutation, subscription", "read, write, listen"],
+      "hint": "Read, write, and real-time",
+      "type": "text"
+    },
+    {
+      "id": "q4",
+      "text": "Is GraphQL a database?",
+      "explanation": "No, GraphQL is a query language and API standard. It works with any backend, whether that's a traditional database, REST API, or other data sources.",
+      "acceptable_answers": ["no", "it's a query language", "it's a specification, not a database", "false"],
+      "hint": "Think about what it actually is",
+      "type": "text"
+    },
+    {
+      "id": "q5",
+      "text": "What will you learn in this platform?",
+      "explanation": "You'll learn GraphQL fundamentals through interactive Q&A modules, experiment with a local GraphQL server, and build real ETL pipelines using GraphQL data sources.",
+      "acceptable_answers": ["GraphQL basics, server, and ETL", "query language, server setup, and data pipelines", "fundamentals and practical skills"],
+      "hint": "We cover learning, serving, and pipelines",
+      "type": "text"
+    }
+  ]
+}
