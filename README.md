@@ -81,6 +81,26 @@ specs/                  # Design documentation
 
 ## Development
 
+### Pre-Implementation Workflow (T104)
+
+Before starting implementation work, the automated pre-flight check system validates your repository state:
+
+```bash
+/speckit-implement
+```
+
+This runs 5 essential checks automatically:
+1. **Branch Status** — Validates you're on a proper feature branch (`feature/T<id>-<name>`)
+2. **Develop Ahead** — Ensures develop is most ahead; offers to merge stale branches
+3. **Stale Branches** — Detects merged branches; offers to clean them up
+4. **Task Completion** — Shows task status from current feature
+5. **New Branch Creation** — Guides creation of next feature branch (if all tasks complete)
+
+**Documentation**: See [.specify/extensions/pre-implement/docs/](./specify/extensions/pre-implement/docs/) for:
+- `WORKFLOW.md` — Complete workflow guide
+- `EXAMPLES.md` — Detailed scenario walkthroughs
+- `TROUBLESHOOTING.md` — Common issues and solutions
+
 ### Running Tests
 
 ```bash

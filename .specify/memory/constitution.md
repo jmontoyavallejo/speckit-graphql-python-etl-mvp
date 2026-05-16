@@ -110,6 +110,16 @@ reducing supply-chain and API-stability risk.
 - `uv pip install <package>` for single-package installs
 - Dependencies MUST be pinned in `pyproject.toml` (Principle V)
 
+**Pre-Implementation Validation** (T104 - mandatory):
+Before running `/speckit-implement`, the system automatically validates:
+1. **Branch Status** — Current branch is a valid feature branch (`feature/T<id>-<name>`)
+2. **Develop Ahead** — `develop` is the most ahead of all branches; offers to merge if needed
+3. **Stale Branches** — Detects and offers to clean up already-merged branches
+4. **Task Status** — Checks `tasks.md` for completion; warns if tasks are pending
+5. **New Branch** — Guides creation of next feature branch when all tasks are complete
+
+These checks prevent accidental work on protected branches, avoid merge conflicts, and ensure task tracking stays current. Documentation: `.specify/extensions/pre-implement/docs/`
+
 **Code Quality Gates**: Every PR MUST:
 1. Pass `ruff check src/ --fix` (unified linting + formatting per Principle I)
 2. Pass `mypy src/ --strict` with zero errors (type checking)
