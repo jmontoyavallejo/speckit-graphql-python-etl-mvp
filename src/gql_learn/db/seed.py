@@ -5,6 +5,7 @@ from __future__ import annotations
 import asyncio
 from typing import TYPE_CHECKING
 
+from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from gql_learn.db.models import Author
@@ -19,8 +20,8 @@ if TYPE_CHECKING:
 async def seed_database() -> None:
     """Populate database with sample data."""
     async with SessionLocal() as session:
-        await session.query(Book).delete()
-        await session.query(Author).delete()
+        await session.execute(delete(Book))
+        await session.execute(delete(Author))
 
         authors = [
             Author(name="George Orwell", birth_year=1903, nationality="British"),

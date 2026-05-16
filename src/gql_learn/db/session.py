@@ -2,20 +2,21 @@
 
 from __future__ import annotations
 
-from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy.ext.asyncio import create_async_engine
+from typing import AsyncGenerator
+
+from sqlalchemy.ext.asyncio import AsyncSession, AsyncEngine, create_async_engine
 from sqlalchemy.orm import sessionmaker
 
 from gql_learn.config import settings
 
-engine = create_async_engine(
+engine: AsyncEngine = create_async_engine(
     settings.database_url.replace("postgresql://", "postgresql+asyncpg://"),
     echo=settings.debug,
     future=True,
 )
 
-SessionLocal = sessionmaker(
-    engine,
+SessionLocal = sessionmaker(  # type: ignore[call-overload]
+    bind=engine,
     class_=AsyncSession,
     expire_on_commit=False,
     autocommit=False,
@@ -23,7 +24,7 @@ SessionLocal = sessionmaker(
 )
 
 
-async def get_db() -> AsyncSession:
+async def get_db() -> AsyncGenerator[AsyncSession, None]:
     """Dependency to get database session."""
     async with SessionLocal() as session:
         yield session

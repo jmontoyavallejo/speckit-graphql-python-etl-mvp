@@ -5,7 +5,7 @@ from __future__ import annotations
 import importlib
 import logging
 from datetime import datetime
-from typing import Any, Callable
+from typing import Any, Callable, cast
 
 from gql_learn.etl.extract import extract_graphql
 from gql_learn.etl.models import ETLPipeline, PipelineRun, PipelineStatus
@@ -37,7 +37,7 @@ def load_transform_function(function_path: str) -> Callable[[list[dict[str, Any]
         func = getattr(module, function_name)
         if not callable(func):
             raise AttributeError(f"{function_path} is not callable")
-        return func
+        return cast(Callable[[list[dict[str, Any]]], list[dict[str, Any]]], func)
     except (ImportError, AttributeError) as e:
         raise ImportError(f"Cannot load transform function {function_path}: {e}")
 

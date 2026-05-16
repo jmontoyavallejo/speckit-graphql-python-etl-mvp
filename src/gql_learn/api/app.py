@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Callable
 
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,12 +17,19 @@ if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
 
 
-async def get_context(request: Request) -> GraphQLContext:
-    """Get GraphQL context with database session from request state."""
-    session: AsyncSession | None = getattr(request.state, "db_session", None)
-    if session is None:
-        session = SessionLocal()
-    return GraphQLContext(session=session)
+def get_context_getter() -> (
+    Callable[[Request], GraphQLContext | None]
+):
+    """Create a context getter for GraphQL requests."""
+
+    async def get_context(request: Request) -> GraphQLContext | None:
+        """Get GraphQL context with database session from request state."""
+        session: AsyncSession | None = getattr(request.state, "db_session", None)
+        if session is None:
+            return None
+        return GraphQLContext(session=session)
+
+    return get_context  # type: ignore[return-value]
 
 
 def create_app() -> FastAPI:
@@ -47,7 +54,7 @@ def create_app() -> FastAPI:
         """Health check endpoint."""
         return {"status": "ok"}
 
-    graphql_app = GraphQLRouter(schema, context_getter=get_context)
+    graphql_app = GraphQLRouter(schema, context_getter=get_context_getter())
     app.include_router(graphql_app, prefix="/graphql")
 
     return app

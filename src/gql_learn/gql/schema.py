@@ -75,7 +75,7 @@ class Query:
         self, info: strawberry.types.Info[GraphQLContext], limit: int = 10
     ) -> list[Book]:
         """Get all books with optional limit."""
-        session: AsyncSession = info.context.session
+        session = info.context.session
         stmt = select(BookModel).limit(limit)
         result = await session.scalars(stmt)
         books = result.all()

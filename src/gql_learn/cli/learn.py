@@ -15,10 +15,8 @@ from gql_learn.modules.evaluator import evaluate_answer
 console = Console()
 
 
-@click.command()
-@click.argument("module_id", required=False)
-def start(module_id: str | None) -> None:
-    """Start learning with Q&A modules."""
+def _start_learning(module_id: str | None) -> None:
+    """Internal function to start learning with Q&A modules."""
     session = load_progress()
 
     if not module_id:
@@ -83,6 +81,13 @@ def start(module_id: str | None) -> None:
 
 @click.command()
 @click.argument("module_id", required=False)
+def start(module_id: str | None) -> None:
+    """Start learning with Q&A modules."""
+    _start_learning(module_id)
+
+
+@click.command()
+@click.argument("module_id", required=False)
 def resume(module_id: str | None) -> None:
     """Resume learning from where you left off."""
     session = load_progress()
@@ -90,7 +95,7 @@ def resume(module_id: str | None) -> None:
     if not module_id:
         if not session.current_module:
             console.print("[yellow]No previous module in progress. Starting fresh.[/yellow]")
-            start.callback(None)
+            _start_learning(None)
             return
         module_id = session.current_module
 
@@ -108,7 +113,7 @@ def resume(module_id: str | None) -> None:
         return
 
     console.print(f"[yellow]Resuming {module.title}...[/yellow]")
-    start.callback(module_id)
+    _start_learning(module_id)
 
 
 @click.command()

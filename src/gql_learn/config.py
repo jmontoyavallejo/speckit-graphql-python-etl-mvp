@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql://gql_learn:learner123@localhost:5432/gql_learn"
     host: str = "127.0.0.1"
     port: int = 8000
+    graphql_endpoint: str = "http://localhost:8000/graphql"
     log_level: str = "INFO"
     debug: bool = False
     environment: str = "development"

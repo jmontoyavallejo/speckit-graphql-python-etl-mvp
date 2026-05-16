@@ -13,10 +13,10 @@ if TYPE_CHECKING:
 class GraphQLContext(BaseContext):
     """Context for GraphQL requests with database session."""
 
-    session: AsyncSession | None = None
+    session: AsyncSession
 
-    def __init__(self, session: AsyncSession | None = None) -> None:
-        """Initialize context with optional database session.
+    def __init__(self, session: AsyncSession) -> None:
+        """Initialize context with database session.
 
         Args:
             session: AsyncSession for database operations
