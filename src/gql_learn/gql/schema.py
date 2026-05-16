@@ -116,6 +116,30 @@ class Query:
         await session.refresh(author, ["books"])
         return _author_to_strawberry(author)
 
+    @strawberry.field
+    async def search_books(
+        self, info: strawberry.types.Info[GraphQLContext], title: str
+    ) -> list[Book]:
+        """Search books by title (case-insensitive)."""
+        session: AsyncSession = info.context.session
+        stmt = select(BookModel).where(
+            BookModel.title.ilike(f"%{title}%")
+        )
+        result = await session.scalars(stmt)
+        books = result.all()
+        return [_book_to_strawberry(book) for book in books]
+
+    @strawberry.field
+    async def books_by_genre(
+        self, info: strawberry.types.Info[GraphQLContext], genre: str
+    ) -> list[Book]:
+        """Get books by genre."""
+        session: AsyncSession = info.context.session
+        stmt = select(BookModel).where(BookModel.genre == genre)
+        result = await session.scalars(stmt)
+        books = result.all()
+        return [_book_to_strawberry(book) for book in books]
+
 
 @strawberry.type
 class Mutation:
@@ -201,6 +225,43 @@ class Mutation:
         await session.commit()
         await session.refresh(author, ["books"])
         return _author_to_strawberry(author)
+
+    @strawberry.mutation
+    async def update_author(
+        self,
+        info: strawberry.types.Info[GraphQLContext],
+        id: strawberry.ID,
+        name: str | None = None,
+        birth_year: int | None = None,
+        nationality: str | None = None,
+    ) -> Author | None:
+        """Update an existing author."""
+        session: AsyncSession = info.context.session
+        author = await session.get(AuthorModel, int(id))
+        if author is None:
+            return None
+        if name is not None:
+            author.name = name
+        if birth_year is not None:
+            author.birth_year = birth_year
+        if nationality is not None:
+            author.nationality = nationality
+        await session.commit()
+        await session.refresh(author, ["books"])
+        return _author_to_strawberry(author)
+
+    @strawberry.mutation
+    async def delete_author(
+        self, info: strawberry.types.Info[GraphQLContext], id: strawberry.ID
+    ) -> bool:
+        """Delete an author (cascade deletes all books)."""
+        session: AsyncSession = info.context.session
+        author = await session.get(AuthorModel, int(id))
+        if author is None:
+            return False
+        await session.delete(author)
+        await session.commit()
+        return True
 
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)

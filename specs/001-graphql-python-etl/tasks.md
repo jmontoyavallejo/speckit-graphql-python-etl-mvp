@@ -101,14 +101,14 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 
 ### Tests for User Story 2 (TDD - write FIRST)
 
-- [ ] T046 [P] [US2] Contract test: Strawberry GraphQL schema matches contracts/graphql-schema.graphql in tests/contract/test\_graphql\_schema.py
-- [ ] T047 [P] [US2] Unit test: Author resolvers (books relationship) in tests/unit/test\_resolvers.py
-- [ ] T048 [P] [US2] Unit test: Book resolvers (author relationship) in tests/unit/test\_resolvers.py
-- [ ] T049 [P] [US2] Integration test: Query all authors in tests/integration/test\_graphql\_server.py
-- [ ] T050 [P] [US2] Integration test: Query books by genre in tests/integration/test\_graphql\_server.py
-- [ ] T051 [P] [US2] Integration test: Mutation addBook returns correct Book type in tests/integration/test\_graphql\_server.py
-- [ ] T052 [P] [US2] Integration test: Malformed query returns clear GraphQL error in tests/integration/test\_graphql\_server.py
-- [ ] T053 [US2] Integration test: Server starts within 10 seconds via `gql-learn server start` in tests/integration/test\_server\_cli.py
+- [X] T046 [P] [US2] Contract test: Strawberry GraphQL schema matches contracts/graphql-schema.graphql in tests/contract/test\_graphql\_schema.py
+- [X] T047 [P] [US2] Unit test: Author resolvers (books relationship) in tests/unit/test\_resolvers.py
+- [X] T048 [P] [US2] Unit test: Book resolvers (author relationship) in tests/unit/test\_resolvers.py
+- [X] T049 [P] [US2] Integration test: Query all authors in tests/integration/test\_graphql\_server.py
+- [X] T050 [P] [US2] Integration test: Query books by genre in tests/integration/test\_graphql\_server.py
+- [X] T051 [P] [US2] Integration test: Mutation addBook returns correct Book type in tests/integration/test\_graphql\_server.py
+- [X] T052 [P] [US2] Integration test: Malformed query returns clear GraphQL error in tests/integration/test\_graphql\_server.py
+- [X] T053 [US2] Integration test: Server starts within 10 seconds via `gql-learn server start` in tests/integration/test\_server\_cli.py
 
 ### Implementation for User Story 2
 
@@ -124,7 +124,7 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 - [X] T063 [P] [US2] Create src/gql\_learn/cli/server.py stop() command (signal handler)
 - [X] T064 [P] [US2] Create src/gql\_learn/cli/server.py logs() command (tail logs from ~/.gql-learn/server.log)
 - [X] T065 [US2] Add signal handling in src/gql\_learn/cli/server.py for clean SIGTERM shutdown
-- [ ] T066 [US2] Validate 80% test coverage for gql/ + api/ + cli/server.py
+- [X] T066 [US2] Validate 80% test coverage for gql/ + api/ + cli/server.py
 
 **Checkpoint**: User Story 2 fully functional. Server starts/stops cleanly, GraphQL queries work, error messages are clear.
 
