@@ -8,8 +8,8 @@ import sys
 from typing import AsyncGenerator
 
 # Set test database URL BEFORE importing any gql_learn modules
-# Use file-based database for testing to ensure proper isolation
-os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///./test_db.sqlite"
+# Use file-based database with proper connection pooling
+os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///./test_db.sqlite?timeout=10&check_same_thread=False"
 
 import httpx
 import pytest
@@ -69,10 +69,35 @@ async def db_session_override(test_db_session: AsyncSession):
 
 
 @pytest_asyncio.fixture
-async def app(db_session_override):
-    """Create FastAPI test app with overridden database."""
+async def app(test_db_engine):
+    """Create FastAPI test app with test database."""
+    from gql_learn.db.session import SessionLocal as ProdSessionLocal
+    from starlette.middleware.base import BaseHTTPMiddleware
+
     app = create_app()
-    app.dependency_overrides[get_db] = db_session_override
+
+    # Create test session factory
+    test_session_factory = sessionmaker(
+        test_db_engine, class_=AsyncSession, expire_on_commit=False
+    )
+
+    # Override get_db to use test database
+    async def test_get_db():
+        async with test_session_factory() as session:
+            yield session
+
+    app.dependency_overrides[get_db] = test_get_db
+
+    # Add middleware to provide db_session to GraphQL context
+    class InjectTestDBMiddleware(BaseHTTPMiddleware):
+        async def dispatch(self, request, call_next):
+            async with test_session_factory() as session:
+                request.state.db_session = session
+                response = await call_next(request)
+            return response
+
+    app.add_middleware(InjectTestDBMiddleware)
+
     return app
 
 

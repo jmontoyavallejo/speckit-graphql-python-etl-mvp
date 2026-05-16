@@ -2,20 +2,27 @@
 
 from __future__ import annotations
 
-from fastapi import FastAPI
+from typing import TYPE_CHECKING
+
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from strawberry.fastapi import GraphQLRouter
 
 from gql_learn.config import settings
-from gql_learn.db.session import get_db
+from gql_learn.db.session import SessionLocal
 from gql_learn.gql.context import GraphQLContext
 from gql_learn.gql.schema import schema
 
+if TYPE_CHECKING:
+    from sqlalchemy.ext.asyncio import AsyncSession
 
-async def get_context() -> GraphQLContext:
-    """Get GraphQL context with database session."""
-    async for session in get_db():
-        return GraphQLContext(session=session)
+
+async def get_context(request: Request) -> GraphQLContext:
+    """Get GraphQL context with database session from request state."""
+    session: AsyncSession | None = getattr(request.state, "db_session", None)
+    if session is None:
+        session = SessionLocal()
+    return GraphQLContext(session=session)
 
 
 def create_app() -> FastAPI:

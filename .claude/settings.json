@@ -4,7 +4,14 @@
       "Bash(git branch *)",
       "Bash(Test-Path \".specify/extensions.yml\" -PathType Leaf)",
       "Bash(./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
-      "Bash(git merge *)"
+      "Bash(git merge *)",
+      "Bash(python -m pytest tests/unit/test_extract.py tests/unit/test_transform.py tests/unit/test_load.py tests/unit/test_pipeline_models.py tests/integration/test_pipeline_e2e.py tests/integration/test_pipeline_cli.py --cov=src/gql_learn/etl --cov=src/gql_learn/cli/pipeline --cov-report=term-missing)",
+      "Bash(python -m pytest tests/ --cov=src/gql_learn --cov-report=term-missing --cov-fail-under=0)",
+      "Bash(python -m pytest tests/integration/test_graphql_server.py::TestGraphQLQueries::test_query_all_authors -xvs)",
+      "Bash(python -m pytest tests/integration/test_graphql_server.py::TestGraphQLQueries::test_query_all_authors -xvs --tb=short)",
+      "Bash(python -m pytest tests/unit/test_modules.py -xvs --tb=short)",
+      "Bash(python -m pytest tests/unit/test_extract.py tests/unit/test_transform.py tests/unit/test_pipeline_models.py tests/integration/test_pipeline_e2e.py tests/integration/test_pipeline_cli.py --cov=src/gql_learn/etl --cov=src/gql_learn/cli/pipeline --cov-report=term --cov-fail-under=0)",
+      "Bash(python -m pytest tests/unit/test_extract.py tests/unit/test_transform.py tests/unit/test_pipeline_models.py tests/integration/test_pipeline_e2e.py tests/integration/test_pipeline_cli.py --cov=src/gql_learn/etl --cov=src/gql_learn/cli/pipeline --cov-report=term-missing)"
     ]
   }
 }
