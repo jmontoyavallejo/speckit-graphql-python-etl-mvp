@@ -10,5 +10,26 @@
       "Skill(speckit-git-feature:*)",
       "PowerShell(& \"c:\\\\Users\\\\JUAN PABLO\\\\Documents\\\\programacion\\\\aprender graphql\\\\.specify\\\\extensions\\\\git\\\\scripts\\\\powershell\\\\create-new-feature.ps1\" -Json -ShortName \"graphql-python-etl\" \"este proyecto sera un aprendizaje de como usar graphql con python desde cero, con preguntas y respuestas interactivas para cada proceso de la aplicacion, conexion con graphql local y flujos de etl para data engineering con python\")"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath' | { read -r f; if [[ $f == *.py ]]; then python -m ruff format \"$f\"; fi; }",
+            "statusMessage": "Running ruff fmt...",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath' | { read -r f; if [[ $f == *.py ]]; then python -m mypy \"$f\"; fi; }",
+            "statusMessage": "Running mypy...",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
   }
 }

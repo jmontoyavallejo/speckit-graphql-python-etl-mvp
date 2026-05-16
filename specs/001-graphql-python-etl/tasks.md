@@ -138,18 +138,18 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 
 ### Tests for User Story 3 (TDD - write FIRST)
 
-- [ ] T067 [P] [US3] Unit test: GraphQL extraction via httpx in tests/unit/test\_extract.py
-- [ ] T068 [P] [US3] Unit test: Data transformation (aggregate\_by\_genre) in tests/unit/test\_transform.py
-- [ ] T069 [P] [US3] Unit test: Loading to JSON file in tests/unit/test\_load.py
-- [ ] T070 [P] [US3] Unit test: Loading to SQLite in tests/unit/test\_load.py
-- [ ] T071 [P] [US3] Unit test: PipelineRun record creation in tests/unit/test\_pipeline\_models.py
-- [ ] T072 [P] [US3] Integration test: End-to-end pipeline execution in tests/integration/test\_pipeline\_e2e.py
-- [ ] T073 [P] [US3] Integration test: Error handling mid-pipeline (corrupt record) in tests/integration/test\_pipeline\_e2e.py
-- [ ] T074 [US3] Integration test: `gql-learn pipeline run sample_library_etl` command in tests/integration/test\_pipeline\_cli.py
+- [X] T067 [P] [US3] Unit test: GraphQL extraction via httpx in tests/unit/test\_extract.py
+- [X] T068 [P] [US3] Unit test: Data transformation (aggregate\_by\_genre) in tests/unit/test\_transform.py
+- [X] T069 [P] [US3] Unit test: Loading to JSON file in tests/unit/test\_load.py
+- [X] T070 [P] [US3] Unit test: Loading to SQLite in tests/unit/test\_load.py
+- [X] T071 [P] [US3] Unit test: PipelineRun record creation in tests/unit/test\_pipeline\_models.py
+- [X] T072 [P] [US3] Integration test: End-to-end pipeline execution in tests/integration/test\_pipeline\_e2e.py
+- [X] T073 [P] [US3] Integration test: Error handling mid-pipeline (corrupt record) in tests/integration/test\_pipeline\_e2e.py
+- [X] T074 [US3] Integration test: `gql-learn pipeline run sample_library_etl` command in tests/integration/test\_pipeline\_cli.py
 
 ### Implementation for User Story 3
 
-- [ ] T075 [P] [US3] Create src/gql\_learn/etl/models.py with ETLPipeline, PipelineRun pydantic models
+- [X] T075 [P] [US3] Create src/gql\_learn/etl/models.py with ETLPipeline, PipelineRun pydantic models
 - [ ] T076 [P] [US3] Create src/gql\_learn/etl/extract.py with extract\_graphql(endpoint, query) async function using httpx
 - [ ] T077 [P] [US3] Create src/gql\_learn/etl/transform.py with example transform: aggregate\_by\_genre(records)
 - [ ] T078 [P] [US3] Create src/gql\_learn/etl/load.py with load\_json(records, filepath) and load\_sqlite(records, table, db) functions
