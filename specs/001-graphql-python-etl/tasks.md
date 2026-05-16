@@ -16,19 +16,19 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 
 **Purpose**: Project initialization, dependencies, directory structure
 
-- [ ] T001 Create project directory structure per plan.md (`src/gql_learn/`, `tests/`, `data/`)
-- [ ] T002 Initialize pyproject.toml with Python 3.12 and core dependencies (fastapi, strawberry, psycopg, sqlalchemy, click, pytest)
-- [ ] T003 [P] Create Python virtual environment and install dependencies via pip/poetry
-- [ ] T004 [P] Create .gitignore with Python patterns (\_\_pycache\_\_/, .venv/, \*.pyc, .env)
-- [ ] T005 [P] Create src/gql\_learn/\_\_init\_\_.py and subpackage markers
-- [ ] T006 [P] Create tests/ directory structure (unit/, integration/, contract/, conftest.py)
-- [ ] T007 Create .env.example with DATABASE\_URL, LOG\_LEVEL, PORT settings
-- [ ] T008 Create docker-compose.yml for PostgreSQL + pgAdmin (development)
-- [ ] T009 [P] Create src/gql\_learn/config.py with Settings class (pydantic) for DB connection, ports, log levels
-- [ ] T010 [P] Configure pytest in pyproject.toml: testpaths, python\_files, addopts (--cov=src, --cov-fail-under=80)
-- [ ] T011 [P] Create src/gql\_learn/db/session.py with SQLAlchemy async engine + session factory
-- [ ] T012 Create README.md with project overview and quickstart reference
-- [ ] T013 [P] Create requirements.txt from pyproject.toml (or pin versions manually)
+- [X] T001 Create project directory structure per plan.md (`src/gql_learn/`, `tests/`, `data/`)
+- [X] T002 Initialize pyproject.toml with Python 3.12 and core dependencies (fastapi, strawberry, psycopg, sqlalchemy, click, pytest)
+- [X] T003 [P] Create Python virtual environment and install dependencies via pip/poetry
+- [X] T004 [P] Create .gitignore with Python patterns (\_\_pycache\_\_/, .venv/, \*.pyc, .env)
+- [X] T005 [P] Create src/gql\_learn/\_\_init\_\_.py and subpackage markers
+- [X] T006 [P] Create tests/ directory structure (unit/, integration/, contract/, conftest.py)
+- [X] T007 Create .env.example with DATABASE\_URL, LOG\_LEVEL, PORT settings
+- [X] T008 Create docker-compose.yml for PostgreSQL + pgAdmin (development)
+- [X] T009 [P] Create src/gql\_learn/config.py with Settings class (pydantic) for DB connection, ports, log levels
+- [X] T010 [P] Configure pytest in pyproject.toml: testpaths, python\_files, addopts (--cov=src, --cov-fail-under=80)
+- [X] T011 [P] Create src/gql\_learn/db/session.py with SQLAlchemy async engine + session factory
+- [X] T012 Create README.md with project overview and quickstart reference
+- [X] T013 [P] Create requirements.txt from pyproject.toml (or pin versions manually)
 
 **Checkpoint**: Project structure ready, all dependencies installed, pytest configured.
 
@@ -40,19 +40,19 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 
 ⚠️ **CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T014 Create src/gql\_learn/db/models.py with SQLAlchemy Base class and configured type hints
-- [ ] T015 [P] Create Author ORM model in src/gql\_learn/db/models.py (id, name, birth\_year, nationality, created\_at)
-- [ ] T016 [P] Create Book ORM model in src/gql\_learn/db/models.py (id, title, author\_id, year, genre, isbn, created\_at) with FK to Author
-- [ ] T017 [P] Create ProgressSession pydantic model in src/gql\_learn/modules/schemas.py (current\_module, modules dict, responses list)
-- [ ] T018 [P] Create LearningModule pydantic model in src/gql\_learn/modules/schemas.py (id, title, description, questions list, estimated\_duration)
-- [ ] T019 [P] Create Question pydantic model in src/gql\_learn/modules/schemas.py (id, text, explanation, acceptable\_answers, hint, type)
-- [ ] T020 Create src/gql\_learn/db/seed.py script to populate initial Author + Book data (20 authors, 100 books via SQLAlchemy)
-- [ ] T021 Create database migration/initialization script (alembic or raw SQL DDL in src/gql\_learn/db/init.sql)
-- [ ] T022 Create src/gql\_learn/db/__init__.py with engine, SessionLocal exports
-- [ ] T023 Create src/gql\_learn/modules/loader.py with load\_module(module\_id) function reading from data/modules/ JSON
-- [ ] T024 Create src/gql\_learn/modules/progress.py with ProgressSession persistence (load/save from ~/.gql-learn/progress.json)
-- [ ] T025 Create src/gql\_learn/modules/__init__.py
-- [ ] T026 Create src/gql\_learn/api/__init__.py and src/gql\_learn/api/app.py with FastAPI() app factory
+- [X] T014 Create src/gql\_learn/db/models.py with SQLAlchemy Base class and configured type hints
+- [X] T015 [P] Create Author ORM model in src/gql\_learn/db/models.py (id, name, birth\_year, nationality, created\_at)
+- [X] T016 [P] Create Book ORM model in src/gql\_learn/db/models.py (id, title, author\_id, year, genre, isbn, created\_at) with FK to Author
+- [X] T017 [P] Create ProgressSession pydantic model in src/gql\_learn/modules/schemas.py (current\_module, modules dict, responses list)
+- [X] T018 [P] Create LearningModule pydantic model in src/gql\_learn/modules/schemas.py (id, title, description, questions list, estimated\_duration)
+- [X] T019 [P] Create Question pydantic model in src/gql\_learn/modules/schemas.py (id, text, explanation, acceptable\_answers, hint, type)
+- [X] T020 Create src/gql\_learn/db/seed.py script to populate initial Author + Book data (20 authors, 100 books via SQLAlchemy)
+- [X] T021 Create database migration/initialization script (alembic or raw SQL DDL in src/gql\_learn/db/init.sql)
+- [X] T022 Create src/gql\_learn/db/__init__.py with engine, SessionLocal exports
+- [X] T023 Create src/gql\_learn/modules/loader.py with load\_module(module\_id) function reading from data/modules/ JSON
+- [X] T024 Create src/gql\_learn/modules/progress.py with ProgressSession persistence (load/save from ~/.gql-learn/progress.json)
+- [X] T025 Create src/gql\_learn/modules/__init__.py
+- [X] T026 Create src/gql\_learn/api/__init__.py and src/gql\_learn/api/app.py with FastAPI() app factory
 
 **Checkpoint**: Database initialized with sample data, models defined, app factory ready. User story implementation can now begin in parallel.
 
@@ -66,28 +66,28 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 
 ### Tests for User Story 1 (TDD - write FIRST)
 
-- [ ] T027 [P] [US1] Contract test: LearningModule can load from JSON in tests/contract/test\_modules.py
-- [ ] T028 [P] [US1] Contract test: Question evaluation (correct/incorrect) in tests/contract/test\_questions.py
-- [ ] T029 [P] [US1] Unit test: ProgressSession load/save to JSON in tests/unit/test\_progress.py
-- [ ] T030 [P] [US1] Unit test: answer validation (blank answers, case sensitivity) in tests/unit/test\_modules.py
-- [ ] T031 [P] [US1] Integration test: `gql-learn start` command loads module and presents first question in tests/integration/test\_learn\_cli.py
-- [ ] T032 [P] [US1] Integration test: Submitting correct answer advances to next question in tests/integration/test\_learn\_cli.py
-- [ ] T033 [P] [US1] Integration test: Progress persists across sessions in tests/integration/test\_learn\_cli.py
+- [X] T027 [P] [US1] Contract test: LearningModule can load from JSON in tests/contract/test\_modules.py
+- [X] T028 [P] [US1] Contract test: Question evaluation (correct/incorrect) in tests/contract/test\_questions.py
+- [X] T029 [P] [US1] Unit test: ProgressSession load/save to JSON in tests/unit/test\_progress.py
+- [X] T030 [P] [US1] Unit test: answer validation (blank answers, case sensitivity) in tests/unit/test\_modules.py
+- [X] T031 [P] [US1] Integration test: `gql-learn start` command loads module and presents first question in tests/integration/test\_learn\_cli.py
+- [X] T032 [P] [US1] Integration test: Submitting correct answer advances to next question in tests/integration/test\_learn\_cli.py
+- [X] T033 [P] [US1] Integration test: Progress persists across sessions in tests/integration/test\_learn\_cli.py
 
 ### Implementation for User Story 1
 
-- [ ] T034 [P] [US1] Create src/gql\_learn/cli/learn.py with @click.command() start(), answer parsing, feedback display
-- [ ] T035 [P] [US1] Create src/gql\_learn/cli/learn.py resume() command to load and continue from last session
-- [ ] T036 [P] [US1] Create src/gql\_learn/cli/learn.py status() command to show progress summary
-- [ ] T037 [US1] Implement answer evaluation logic in src/gql\_learn/modules/evaluator.py (case-insensitive, levenshtein distance tolerance)
-- [ ] T038 [US1] Integrate ProgressSession loading/saving into start/resume commands (src/gql\_learn/cli/learn.py)
-- [ ] T039 [US1] Add terminal formatting (Rich library) for Q&A display: question highlight, colored feedback (green ✓ / red ✗)
-- [ ] T040 [US1] Create data/modules/01\_schema\_types.json with 5 questions on GraphQL types + schemas
-- [ ] T041 [P] [US1] Create data/modules/02\_queries.json with 5 questions on GraphQL queries
-- [ ] T042 [P] [US1] Create data/modules/03\_mutations.json with 5 questions on GraphQL mutations
-- [ ] T043 [US1] Create data/modules/04\_subscriptions.json with 5 questions on GraphQL subscriptions (post-MVP, lower detail)
-- [ ] T044 [US1] Integrate module loading into CLI (src/gql\_learn/cli/learn.py loads from data/modules/)
-- [ ] T045 [US1] Validate 80% test coverage for modules/ + cli/learn.py
+- [X] T034 [P] [US1] Create src/gql\_learn/cli/learn.py with @click.command() start(), answer parsing, feedback display
+- [X] T035 [P] [US1] Create src/gql\_learn/cli/learn.py resume() command to load and continue from last session
+- [X] T036 [P] [US1] Create src/gql\_learn/cli/learn.py status() command to show progress summary
+- [X] T037 [US1] Implement answer evaluation logic in src/gql\_learn/modules/evaluator.py (case-insensitive, levenshtein distance tolerance)
+- [X] T038 [US1] Integrate ProgressSession loading/saving into start/resume commands (src/gql\_learn/cli/learn.py)
+- [X] T039 [US1] Add terminal formatting (Rich library) for Q&A display: question highlight, colored feedback (green ✓ / red ✗)
+- [X] T040 [US1] Create data/modules/01\_schema\_types.json with 5 questions on GraphQL types + schemas
+- [X] T041 [P] [US1] Create data/modules/02\_queries.json with 5 questions on GraphQL queries
+- [X] T042 [P] [US1] Create data/modules/03\_mutations.json with 5 questions on GraphQL mutations
+- [X] T043 [US1] Create data/modules/04\_subscriptions.json with 5 questions on GraphQL subscriptions (post-MVP, lower detail)
+- [X] T044 [US1] Integrate module loading into CLI (src/gql\_learn/cli/learn.py loads from data/modules/)
+- [X] T045 [US1] Validate 80% test coverage for modules/ + cli/learn.py
 
 **Checkpoint**: User Story 1 fully functional. Learner can launch Q&A, answer questions, receive feedback, and resume. Tests passing.
 
