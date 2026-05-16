@@ -4,8 +4,18 @@ from __future__ import annotations
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from strawberry.fastapi import GraphQLRouter
 
 from gql_learn.config import settings
+from gql_learn.db.session import get_db
+from gql_learn.gql.context import GraphQLContext
+from gql_learn.gql.schema import schema
+
+
+async def get_context() -> GraphQLContext:
+    """Get GraphQL context with database session."""
+    async for session in get_db():
+        return GraphQLContext(session=session)
 
 
 def create_app() -> FastAPI:
@@ -29,6 +39,9 @@ def create_app() -> FastAPI:
     async def health() -> dict[str, str]:
         """Health check endpoint."""
         return {"status": "ok"}
+
+    graphql_app = GraphQLRouter(schema, context_getter=get_context)
+    app.include_router(graphql_app, prefix="/graphql")
 
     return app
 

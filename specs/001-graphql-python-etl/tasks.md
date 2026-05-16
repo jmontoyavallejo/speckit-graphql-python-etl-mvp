@@ -112,18 +112,18 @@ description: "Comprehensive task breakdown for GraphQL Python ETL Learning Platf
 
 ### Implementation for User Story 2
 
-- [ ] T054 [P] [US2] Create src/gql\_learn/gql/schema.py with Strawberry types (Book, Author) matching data-model.md
-- [ ] T055 [P] [US2] Create src/gql\_learn/gql/resolvers.py with Query resolvers (books, authors, book(id), author(id))
-- [ ] T056 [P] [US2] Create src/gql\_learn/gql/resolvers.py with Mutation resolvers (addBook, deleteBook, updateBook, addAuthor)
-- [ ] T057 [P] [US2] Create src/gql\_learn/gql/context.py with GraphQL request context (session, user, etc.)
-- [ ] T058 [US2] Mount Strawberry schema in FastAPI app via graphql\_app route in src/gql\_learn/api/app.py
-- [ ] T059 [US2] Add CORS middleware in src/gql\_learn/api/app.py (allow localhost:*)
-- [ ] T060 [P] [US2] Create src/gql\_learn/api/routes.py with health check endpoint (GET /health)
-- [ ] T061 [US2] Include health check in FastAPI app in src/gql\_learn/api/app.py
-- [ ] T062 [P] [US2] Create src/gql\_learn/cli/server.py with @click.command() start() (subprocess uvicorn)
-- [ ] T063 [P] [US2] Create src/gql\_learn/cli/server.py stop() command (signal handler)
-- [ ] T064 [P] [US2] Create src/gql\_learn/cli/server.py logs() command (tail logs from ~/.gql-learn/server.log)
-- [ ] T065 [US2] Add signal handling in src/gql\_learn/cli/server.py for clean SIGTERM shutdown
+- [X] T054 [P] [US2] Create src/gql\_learn/gql/schema.py with Strawberry types (Book, Author) matching data-model.md
+- [X] T055 [P] [US2] Create src/gql\_learn/gql/resolvers.py with Query resolvers (books, authors, book(id), author(id))
+- [X] T056 [P] [US2] Create src/gql\_learn/gql/resolvers.py with Mutation resolvers (addBook, deleteBook, updateBook, addAuthor)
+- [X] T057 [P] [US2] Create src/gql\_learn/gql/context.py with GraphQL request context (session, user, etc.)
+- [X] T058 [US2] Mount Strawberry schema in FastAPI app via graphql\_app route in src/gql\_learn/api/app.py
+- [X] T059 [US2] Add CORS middleware in src/gql\_learn/api/app.py (allow localhost:*)
+- [X] T060 [P] [US2] Create src/gql\_learn/api/routes.py with health check endpoint (GET /health)
+- [X] T061 [US2] Include health check in FastAPI app in src/gql\_learn/api/app.py
+- [X] T062 [P] [US2] Create src/gql\_learn/cli/server.py with @click.command() start() (subprocess uvicorn)
+- [X] T063 [P] [US2] Create src/gql\_learn/cli/server.py stop() command (signal handler)
+- [X] T064 [P] [US2] Create src/gql\_learn/cli/server.py logs() command (tail logs from ~/.gql-learn/server.log)
+- [X] T065 [US2] Add signal handling in src/gql\_learn/cli/server.py for clean SIGTERM shutdown
 - [ ] T066 [US2] Validate 80% test coverage for gql/ + api/ + cli/server.py
 
 **Checkpoint**: User Story 2 fully functional. Server starts/stops cleanly, GraphQL queries work, error messages are clear.
