@@ -5,6 +5,7 @@
       "Bash(Test-Path \".specify/extensions.yml\" -PathType Leaf)",
       "Bash(./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)",
       "Bash(git merge *)",
+      "Bash(git pull *)",
       "Bash(python -m pytest tests/unit/test_extract.py tests/unit/test_transform.py tests/unit/test_load.py tests/unit/test_pipeline_models.py tests/integration/test_pipeline_e2e.py tests/integration/test_pipeline_cli.py --cov=src/gql_learn/etl --cov=src/gql_learn/cli/pipeline --cov-report=term-missing)",
       "Bash(python -m pytest tests/ --cov=src/gql_learn --cov-report=term-missing --cov-fail-under=0)",
       "Bash(python -m pytest tests/integration/test_graphql_server.py::TestGraphQLQueries::test_query_all_authors -xvs)",
@@ -18,7 +19,12 @@
       "Bash(python -m gql_learn --help)",
       "Bash(python -c \"from gql_learn.config import setup_logging; setup_logging\\(\\); print\\('✓ Logging setup works'\\)\")",
       "Bash(python -c \"from gql_learn.cli.main import cli; print\\('[OK] CLI imported successfully'\\)\")",
-      "Bash(git pull *)"
+      "Bash(Test-Path \"c:\\\\Users\\\\JUAN PABLO\\\\Documents\\\\programacion\\\\aprender graphql\\\\.specify\\\\extensions.yml\")",
+      "Bash(bash .\\\\.specify\\\\scripts\\\\bash\\\\check-prerequisites.sh --json --require-tasks --include-tasks)",
+      "PowerShell(.\\\\.specify\\\\scripts\\\\bash\\\\check-prerequisites.sh --json --require-tasks --include-tasks 2>&1)",
+      "PowerShell(.\\\\.specify\\\\extensions\\\\git\\\\scripts\\\\powershell\\\\auto-commit.ps1 after_implement)",
+      "Edit(/.claude/skills/speckit-git-commit/**)",
+      "Bash(bash ./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)"
     ]
   }
 }
