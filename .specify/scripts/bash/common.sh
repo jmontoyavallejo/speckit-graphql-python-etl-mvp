@@ -138,15 +138,26 @@ check_feature_branch() {
     local branch
     branch=$(spec_kit_effective_branch_name "$raw")
 
-    # Accept sequential prefix (3+ digits) but exclude malformed timestamps
-    # Malformed: 7-or-8 digit date + 6-digit time with no trailing slug (e.g. "2026031-143022" or "20260319-143022")
-    local is_sequential=false
-    if [[ "$branch" =~ ^[0-9]{3,}- ]] && [[ ! "$branch" =~ ^[0-9]{7}-[0-9]{6}- ]] && [[ ! "$branch" =~ ^[0-9]{7,8}-[0-9]{6}$ ]]; then
-        is_sequential=true
+    # Accept feature branches with gitflow convention:
+    # - T<id>-<name> (e.g., T001-feature, T046-us2-graphql-tests)
+    # - <digits>-<name> (e.g., 001-feature-name, 1234-feature-name)
+    # - timestamp-<name> (e.g., 20260319-143022-feature-name)
+    local is_valid=false
+
+    # Check for Txx prefix (gitflow task convention)
+    if [[ "$branch" =~ ^T[0-9]{3,}- ]]; then
+        is_valid=true
+    # Check for sequential prefix (3+ digits)
+    elif [[ "$branch" =~ ^[0-9]{3,}- ]] && [[ ! "$branch" =~ ^[0-9]{7}-[0-9]{6}- ]] && [[ ! "$branch" =~ ^[0-9]{7,8}-[0-9]{6}$ ]]; then
+        is_valid=true
+    # Check for timestamp prefix
+    elif [[ "$branch" =~ ^[0-9]{8}-[0-9]{6}- ]]; then
+        is_valid=true
     fi
-    if [[ "$is_sequential" != "true" ]] && [[ ! "$branch" =~ ^[0-9]{8}-[0-9]{6}- ]]; then
+
+    if [[ "$is_valid" != "true" ]]; then
         echo "ERROR: Not on a feature branch. Current branch: $raw" >&2
-        echo "Feature branches should be named like: 001-feature-name, 1234-feature-name, or 20260319-143022-feature-name" >&2
+        echo "Feature branches should be named like: feature/T001-feature-name, 001-feature-name, 1234-feature-name, or 20260319-143022-feature-name" >&2
         return 1
     fi
 
