@@ -1,11 +1,15 @@
 # GraphQL Python ETL Learning Platform
 
+> Learn GraphQL by doing: master query languages, build a GraphQL server, and implement ETL pipelines—all locally, all in Python.
+
 An interactive learning platform to master GraphQL with Python, featuring:
 
 - **Interactive Q&A Modules**: Learn GraphQL concepts through guided question-and-answer sessions
-- **Local GraphQL Server**: Hands-on practice with a Strawberry GraphQL server powered by FastAPI
+- **Local GraphQL Server Lab**: Hands-on practice with a Strawberry GraphQL server powered by FastAPI
 - **ETL Pipelines**: Real-world data engineering workflows using GraphQL as a data source
 - **Progress Tracking**: Resume learning sessions seamlessly with persistent progress storage
+- **Type Safety**: Strict Python 3.12 typing with `mypy --strict`
+- **Comprehensive Tests**: Full test coverage with unit, integration, and contract tests
 
 ## Quick Start
 
@@ -91,6 +95,89 @@ ruff format src/
 mypy src/ --strict
 ```
 
+## Architecture
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    gql-learn CLI                        │
+├─────────────────────────────────────────────────────────┤
+│                                                         │
+│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  │
+│  │   Learn      │  │   Server     │  │   Pipeline   │  │
+│  │   (Q&A)      │  │   (GraphQL)  │  │   (ETL)      │  │
+│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  │
+│         │                 │                 │          │
+└─────────┼─────────────────┼─────────────────┼──────────┘
+          │                 │                 │
+    ┌─────▼─────┐      ┌────▼────┐      ┌────▼────┐
+    │  Modules  │      │ Strawberry│    │ ETL Core│
+    │  (JSON)   │      │ FastAPI  │      │ Extract │
+    │  Progress │      │ SQLAlchemy│    │Transform│
+    │  (JSON)   │      └────┬─────┘     │ Load    │
+    └───────────┘           │           └────┬────┘
+                      ┌─────▼─────┐          │
+                      │ PostgreSQL│◄─────────┘
+                      │ (via DB)  │
+                      └───────────┘
+```
+
+### Core Modules
+
+- **cli/**: Command-line interface with Learn, Server, and Pipeline subcommands
+- **modules/**: Q&A module loading and progress tracking
+- **gql/**: Strawberry GraphQL schema and resolvers
+- **etl/**: ETL pipeline extraction, transformation, and loading
+- **api/**: FastAPI application and GraphQL routing
+
+## Troubleshooting
+
+### PostgreSQL Connection Issues
+```bash
+# Check PostgreSQL is running
+psql -U postgres -c "SELECT 1"
+
+# Or use Docker
+docker run --name gql-learn-db -e POSTGRES_PASSWORD=learner123 -p 5432:5432 postgres:16
+```
+
+### Virtual Environment Issues
+```bash
+# Recreate venv
+rm -rf .venv
+python -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+```
+
+### Port Already in Use
+```bash
+# If port 8000 is busy, kill the process
+lsof -ti :8000 | xargs kill -9
+```
+
+## Command Reference
+
+```bash
+# Learning
+gql-learn start              # Begin a Q&A module
+gql-learn resume            # Continue from last session
+gql-learn status            # Show progress summary
+
+# GraphQL Server
+gql-learn server start      # Start local GraphQL server
+gql-learn server stop       # Stop the server
+gql-learn server logs       # View server logs
+
+# ETL Pipelines
+gql-learn pipeline run NAME        # Execute a pipeline
+gql-learn pipeline list            # Show available pipelines
+gql-learn pipeline show NAME       # Display pipeline details
+gql-learn pipeline runs NAME       # View execution history
+
+# Setup
+gql-learn init              # Initialize application
+```
+
 ## Principles
 
 This project follows strict principles from [.specify/memory/constitution.md](.specify/memory/constitution.md):
@@ -100,6 +187,10 @@ This project follows strict principles from [.specify/memory/constitution.md](.s
 3. **Local-Only Execution**: No cloud dependencies
 4. **Clear CLI Commands**: Under 30 characters, with `--json` support
 5. **Mature Dependencies**: Only stable, actively-maintained packages
+
+## Contribution
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on development, testing, and code style.
 
 ## License
 
