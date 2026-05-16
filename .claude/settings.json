@@ -21,7 +21,9 @@
       "Bash(Test-Path \"c:\\\\Users\\\\JUAN PABLO\\\\Documents\\\\programacion\\\\aprender graphql\\\\.specify\\\\extensions.yml\")",
       "Bash(bash .\\\\.specify\\\\scripts\\\\bash\\\\check-prerequisites.sh --json --require-tasks --include-tasks)",
       "PowerShell(.\\\\.specify\\\\scripts\\\\bash\\\\check-prerequisites.sh --json --require-tasks --include-tasks 2>&1)",
-      "PowerShell(.\\\\.specify\\\\extensions\\\\git\\\\scripts\\\\powershell\\\\auto-commit.ps1 after_implement)"
+      "PowerShell(.\\\\.specify\\\\extensions\\\\git\\\\scripts\\\\powershell\\\\auto-commit.ps1 after_implement)",
+      "Edit(/.claude/skills/speckit-git-commit/**)",
+      "Bash(bash ./.specify/scripts/bash/check-prerequisites.sh --json --require-tasks --include-tasks)"
     ]
   }
 }
