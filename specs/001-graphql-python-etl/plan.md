@@ -56,8 +56,58 @@ on Python 3.12 with no cloud dependencies; developed and tested on Ubuntu via WS
 | III. No Cloud | ✅ PASS | PostgreSQL runs locally on WSL; no AWS/GCP/Azure; all data stays on-disk |
 | IV. Short Commands | ✅ PASS | All CLI entry points ≤ 30 chars: `gql-learn start`, `gql-learn server start`, `gql-learn pipeline run sample` |
 | V. Mature Dependencies | ⚠️ EXCEPTION | `fastapi` 0.x and `strawberry-graphql` 0.x; justified in Complexity Tracking |
+| VI. Strict Git Flow Compliance | ✅ PASS | All feature branches MUST use `feature/T<task-id>-<description>` format; reviewed in phase planning |
 
 **Post-Phase-1 Re-Check**: To be performed after design artifacts are complete.
+
+---
+
+## Git Workflow & Branch Management (Mandatory)
+
+**STRICT GITFLOW ENFORCEMENT**: All branches for this project MUST follow the naming and workflow rules defined in the project constitution (`CLAUDE.md` → Git Flow Branching Model section).
+
+### Branch Naming Requirements (MUST be enforced for all new branches)
+
+| Branch Type | Format | Example | Rules |
+|------------|--------|---------|-------|
+| **Feature** | `feature/T<task-id>-<description>` | `feature/T046-us2-graphql-tests` | Task ID from tasks.md; lowercase; hyphens for spaces |
+| **Release** | `release/v<semver>` | `release/v1.0.0` | Semantic versioning; merged to master + develop |
+| **Hotfix** | `hotfix/v<semver>-<issue>` | `hotfix/v1.0.1-critical-bug` | Branch from master; merged back to master + develop |
+| **Integration** | `develop` | — | Base branch for all features; never commit directly |
+| **Production** | `master` | — | Tagged releases only; merge commits from release branches |
+
+### Branch Creation Workflow (MANDATORY)
+
+For **every new feature branch**:
+
+1. **Verify task exists** in `tasks.md` with a task ID (e.g., T046, T067)
+2. **Create branch from `develop`**: `git checkout develop && git pull origin develop`
+3. **Create feature branch** with strict naming:
+   ```bash
+   git checkout -b feature/T<task-id>-<description>
+   ```
+4. **Push to remote** with upstream tracking:
+   ```bash
+   git push -u origin feature/T<task-id>-<description>
+   ```
+5. **Never commit directly to `develop` or `master`**: All code MUST flow through feature branches → PRs → code review
+
+### PR & Merge Requirements
+
+Each feature branch PR MUST:
+- ✅ Reference the task ID in PR title: `[T046] GraphQL Server Test Suite`
+- ✅ Link to task details in PR description
+- ✅ Pass all CI checks (lint, type check, tests, coverage ≥ 80%)
+- ✅ Be reviewed before squash-merge to `develop`
+- ✅ Use squash-merge to maintain clean history: `git merge --squash feature/T<id>`
+
+### Existing Branch Audit
+
+**Current state (requires correction)**:
+- ❌ `046-us2-graphql-tests` — Missing `feature/` prefix and task ID marker (should be `feature/T046-us2-graphql-tests`)
+- ❌ `067-us3-etl-pipelines` — Missing `feature/` prefix and task ID marker (should be `feature/T067-us3-etl-pipelines`)
+
+**Action required**: Rename or recreate these branches with proper naming before merging to `develop`.
 
 ## Project Structure
 
