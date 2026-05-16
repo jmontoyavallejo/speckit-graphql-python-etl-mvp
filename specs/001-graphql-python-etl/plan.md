@@ -69,10 +69,12 @@ specs/001-graphql-python-etl/
 ├── research.md          # Phase 0 output
 ├── data-model.md        # Phase 1 output (entities, DB schema)
 ├── quickstart.md        # Phase 1 output (setup + run guide)
+├── architecture.md      # Auto-updating architecture diagrams
 ├── contracts/
 │   ├── graphql-schema.graphql   # GraphQL schema
 │   ├── rest-endpoints.md        # FastAPI endpoint contract
-│   └── cli-commands.md          # CLI command interface
+│   ├── cli-commands.md          # CLI command interface
+│   └── function-docs.md         # Function documentation standards
 └── tasks.md             # Phase 2 output (/speckit-tasks command)
 ```
 
@@ -147,6 +149,111 @@ docker-compose.yml                # PostgreSQL + pgAdmin (local dev)
 **Structure Decision**: Single CLI + FastAPI app. Q&A runs via `gql-learn` commands (CLI).
 GraphQL server and REST API run under FastAPI. ETL pipelines are orchestrated via CLI.
 Database: PostgreSQL (local via docker-compose or installed on WSL).
+
+### Three Main Utilities
+
+The platform is organized around three complementary learning utilities:
+
+#### 1. **Theoretical Utility** (`gql-learn learn`)
+- Interactive Q&A modules covering GraphQL concepts
+- Minimum 10 questions per module covering:
+  - Schemas & types fundamentals
+  - Query syntax and operations
+  - Mutation behavior and patterns
+  - Subscription concepts
+  - Real-world use cases and best practices
+- Progressive difficulty: beginner → intermediate → advanced
+- Each question includes: prompt, acceptable answers (multiple variations),
+  explanation, hints for retry attempts
+- Progress tracking and completion metrics
+
+#### 2. **Practical Utility** (`gql-learn server` + `gql-learn query`)
+- Local GraphQL server with sample dataset
+- Pre-populated sample data (20+ authors, 100+ books with relationships)
+- Interactive query execution via browser (GraphiQL) or CLI
+- Hands-on exercises: write queries, mutations against live data
+- ETL pipeline templates demonstrating real data flows
+- Query result inspection and schema exploration tools
+
+#### 3. **Evaluation Utility** (`gql-learn eval`)
+- Comprehensive multichoice assessment of concepts
+- Minimum 10 evaluation questions covering:
+  - Schema design decisions
+  - Query optimization patterns
+  - Error handling scenarios
+  - Data structure choices
+  - Performance considerations
+  - Integration with Python/applications
+  - Security and best practices
+  - Advanced GraphQL features
+  - Real-world problem solving
+  - Tool selection and alternatives
+- Real-time scoring with % breakdown
+- Per-concept performance summary
+- Identifies knowledge gaps for targeted review
+- Optional: save results for progress tracking
+
+### Function Documentation Standards
+
+All functions MUST follow this docstring format:
+
+```python
+def function_name(arg1: Type1, arg2: Type2) -> ReturnType:
+    """Brief description of what the function does.
+
+    Args:
+        arg1: Description of arg1 parameter
+        arg2: Description of arg2 parameter
+
+    Returns:
+        Description of return value and type
+
+    Raises:
+        ValueError: When validation fails
+        FileNotFoundError: If required file not found
+        ConnectionError: If database connection fails
+    """
+```
+
+This applies to all production code and ensures consistency across the project.
+
+### Sample Data Management
+
+All three utilities require rich sample data:
+
+**Database Sample Data**:
+- 20+ authors (diverse nationalities, genres, time periods)
+- 100+ books (various genres, publication years, relationships)
+- Relationships: books linked to authors, genre classifications
+- Pre-populated for immediate experimentation without setup burden
+
+**Query Exercise Data**:
+- Example queries demonstrating each GraphQL feature
+- Mutation examples with sample input/output
+- Edge cases and error scenarios
+- Results that teach relationships and schema navigation
+
+**Evaluation Question Data**:
+- Scenario-based questions with realistic data context
+- Questions reference the sample dataset
+- Solutions demonstrable via actual queries
+- Metrics tied to actual execution results
+
+## Architecture Diagrams & Auto-Updates
+
+Architecture documentation is maintained in `architecture.md` with the following diagrams:
+
+1. **System Architecture**: Shows interaction between CLI, FastAPI server, PostgreSQL, and file system
+2. **Data Flow Diagrams**: ETL extract-transform-load pipeline visualization
+3. **Module Dependencies**: Dependency tree showing how modules interact
+4. **Learning Progression**: Visual flowchart of question sequences and module relationships
+
+**Auto-Update Strategy**:
+- Each feature branch updates relevant diagrams
+- Architecture.md is auto-generated from source code comments
+- Diagrams use ASCII art for version control compatibility
+- CI/CD validates that diagrams match actual code structure
+- Documentation pipeline rebuilds on each commit to detect drift
 
 ## Complexity Tracking
 

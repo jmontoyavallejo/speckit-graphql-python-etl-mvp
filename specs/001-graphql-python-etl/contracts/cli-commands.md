@@ -339,6 +339,74 @@ Next step: gql-learn server start
 
 ---
 
+### `gql-learn eval [OPTIONS]`
+
+Run comprehensive evaluation test (minimum 10 multichoice questions).
+
+**Options**:
+- `--topics TEXT` — Filter by topic (schema, queries, mutations, etc.)
+- `--difficulty TEXT` — Filter by difficulty (beginner/intermediate/advanced)
+- `--save` — Save results to `~/.gql-learn/eval_results.json`
+- `--json` — Output as JSON (for scripting)
+
+**Example**:
+```bash
+$ gql-learn eval
+GraphQL Evaluation Test
+======================
+
+Question 1 of 12:
+What is the difference between a query and a mutation?
+
+(a) Queries read data; mutations write data
+(b) No difference; they're synonyms
+(c) Mutations are faster
+(d) Queries require authentication
+
+Your answer: a
+✓ Correct!
+
+[Questions 2-12...]
+
+RESULTS
+=======
+Score: 10/12 (83%)
+
+Breakdown by Topic:
+  Schemas: 100% (3/3)
+  Queries: 75% (3/4)
+  Mutations: 100% (3/3)
+  Subscriptions: 67% (2/3)
+  Performance: 50% (1/2)
+  Real-world scenarios: 100% (2/2)
+
+Weak Areas Identified:
+  - Query optimization
+  - Subscription edge cases
+  
+Recommended Review: 02_queries, 04_subscriptions
+```
+
+**Output**: Interactive evaluation with real-time scoring and % breakdown by topic
+
+**Exit Code**: 0 on completion, 1 on error
+
+**Minimum Questions**: 10 questions guaranteed, covering:
+1. Schema design and types
+2. Query syntax and operations
+3. Query optimization patterns
+4. Mutation design patterns
+5. Error handling scenarios
+6. Data structure choices
+7. Performance considerations
+8. Python/application integration
+9. Security and best practices
+10. Real-world problem solving
+
+**Character Count**: `gql-learn eval` = 14 chars ✓
+
+---
+
 ### `gql-learn version`
 
 Show version information.
